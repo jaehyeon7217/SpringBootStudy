@@ -10,6 +10,6 @@ public class PostController {
 
     @RequestMapping(value = "/domain", method = RequestMethod.POST)
     public String postExample(){
-        return "Hello Post Api";
+        return "Hello Post Api2";
     }
 }
