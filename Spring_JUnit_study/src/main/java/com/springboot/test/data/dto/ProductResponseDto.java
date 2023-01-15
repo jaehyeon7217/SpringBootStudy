@@ -1,4 +1,4 @@
-package com.springboot.jpa.data.dto;
+package com.springboot.test.data.dto;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +15,13 @@ public class ProductResponseDto {
         this.price = price;
         this.stock = stock;
         this.createdAt = createdAt;
+    }
+
+    public ProductResponseDto(Long number, String name, int price, int stock) {
+        this.number = number;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
     }
 
     public ProductResponseDto() {

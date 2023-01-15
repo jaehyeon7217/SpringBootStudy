@@ -1,4 +1,4 @@
-package com.springboot.jpa.data.dto;
+package com.springboot.test.data.dto;
 
 public class ProductDto {
     private String name;
