@@ -19,12 +19,12 @@ public class MemoryMemberRepositoryTest {
     // 그래서 각 테스트가 끝나면 메모리를 비워주는 작업을 해주는 용도
     // 이거 안하면 findALl하고 메모리가 안지워져서 오류남
     @AfterEach
-    public void afterEach(){
+    public void afterEach() {
         repository.clearStore();
     }
 
     @Test
-    public void save(){
+    public void save() {
         Member member = new Member();
         member.setName("spring");
 
@@ -46,7 +46,7 @@ public class MemoryMemberRepositoryTest {
     }
 
     @Test
-    public void findByName(){
+    public void findByName() {
         Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
@@ -62,12 +62,12 @@ public class MemoryMemberRepositoryTest {
     }
 
     @Test
-    public void findAll(){
-        Member member1  = new Member();
+    public void findAll() {
+        Member member1 = new Member();
         member1.setName("spring1");
         repository.save(member1);
 
-        Member member2  = new Member();
+        Member member2 = new Member();
         member2.setName("spring2");
         repository.save(member2);
 

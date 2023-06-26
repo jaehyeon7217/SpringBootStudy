@@ -15,27 +15,29 @@ class MemberServiceTest {
 
 //    MemberService memberService = new MemberService();
 //    MemoryMemberRepository memberRepository = new MemoryMemberRepository();
-    
+
     // DI(Dependency Injection) 방법으로 수정
     MemberService memberService;
     MemoryMemberRepository memberRepository;
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach() {
         memberRepository = new MemoryMemberRepository();
         memberService = new MemberService(memberRepository);
     }
+
     @AfterEach
-    public void AfterEach(){
+    public void AfterEach() {
         memberRepository.clearStore();
     }
+
     @Test
     void 회원가입() {
         // given 주어진 상황에서
         Member member = new Member();
         member.setName("spring");
         // when 실행했을 때
-        Long saveId  = memberService.join(member);
+        Long saveId = memberService.join(member);
 
         // then 결과가 나와야해
         Member findMember = memberService.findOne(saveId).get();
@@ -43,7 +45,7 @@ class MemberServiceTest {
     }
 
     @Test
-    public void 중복_회원_예외(){
+    public void 중복_회원_예외() {
         //given
         Member member1 = new Member();
         member1.setName("spring");
