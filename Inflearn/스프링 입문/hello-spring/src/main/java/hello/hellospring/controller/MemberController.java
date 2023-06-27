@@ -25,7 +25,7 @@ public class MemberController {
     // 그래서 패키지의 2스텝 하위에서만 스캔이 일어남.
     // 생성자 주입 (권장)
     @Autowired
-    public MemberController(MemberService memberService){
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
@@ -43,12 +43,12 @@ public class MemberController {
 //    }
 
     @GetMapping("/members/new")
-    public String createForm(){
+    public String createForm() {
         return "members/createMemberForm";
     }
 
     @PostMapping("/members/new")
-    public String create(MemberForm form){
+    public String create(MemberForm form) {
         Member member = new Member();
         member.setName(form.getName());
 
@@ -58,7 +58,7 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    public String list(Model model){
+    public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
         return "members/memberList";

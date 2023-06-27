@@ -4,12 +4,14 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 // 원래는 @Component 로 등록해야하는데 Service 에 포함되어 있음.
 //@Service
+@Transactional
 public class MemberService {
     // 다른 인스턴스를 참조
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
