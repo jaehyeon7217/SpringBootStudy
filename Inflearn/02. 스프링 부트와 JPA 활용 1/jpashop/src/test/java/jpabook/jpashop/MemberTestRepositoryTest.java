@@ -4,18 +4,14 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 @SpringBootTest
-public class MemberRepositoryTest {
+public class MemberTestRepositoryTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberSimpleTestRepository memberSimpleTestRepository;
 
     @Test
     @Transactional // springFramwork 에서 제공하는걸 사용해야함.
@@ -25,18 +21,18 @@ public class MemberRepositoryTest {
     @Rollback(false)
     public void testMember() throws Exception{
         //given
-        Member member = new Member();
-        member.setUserName("memberA");
+        MemberSimpleTest memberTest = new MemberSimpleTest();
+        memberTest.setUserName("memberA");
         //when
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Long savedId = memberSimpleTestRepository.save(memberTest);
+        MemberSimpleTest findMemberTest = memberSimpleTestRepository.find(savedId);
 
         //then
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-        Assertions.assertThat(findMember.getUserName()).isEqualTo(member.getUserName());
-        Assertions.assertThat(findMember).isEqualTo(member);
+        Assertions.assertThat(findMemberTest.getId()).isEqualTo(memberTest.getId());
+        Assertions.assertThat(findMemberTest.getUserName()).isEqualTo(memberTest.getUserName());
+        Assertions.assertThat(findMemberTest).isEqualTo(memberTest);
         // 같은 트랜잭션이면 영속성 컨텍스트안에서 Id가 같으면 같은 Entity로 인식하고 1차 캐시에서 꺼내와서 기존것이 나가버림.
-        System.out.println("findMember == member : " + (findMember==member));
+        System.out.println("findMember == member : " + (findMemberTest == memberTest));
 
     }
 

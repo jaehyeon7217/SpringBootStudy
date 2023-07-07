@@ -6,19 +6,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class MemberRepository {
+public class MemberSimpleTestRepository {
 
     // Springboot data jpa에서 생성해서 주입 해줌
     @PersistenceContext
     private EntityManager em;
 
-    public Long save(Member member){
-        em.persist(member);
-        return member.getId();
+    public Long save(MemberSimpleTest memberTest){
+        em.persist(memberTest);
+        return memberTest.getId();
     }
 
-    public Member find(Long id){
-        return em.find(Member.class, id);
+    public MemberSimpleTest find(Long id){
+        return em.find(MemberSimpleTest.class, id);
     }
 
 }
