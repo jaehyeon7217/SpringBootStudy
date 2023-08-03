@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,6 +16,7 @@ import static javax.persistence.FetchType.*;
 @Table(name= "orders")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
@@ -75,4 +78,52 @@ public class Order {
         this.delivery=delivery;
         delivery.setOrder(this);
     }
+
+    //==생성 메서드== // Order 만 생성되는게 아니라 Delivery 같은 여러개가 생성되기 때문
+    // 이렇게 하면 생성 시점에 대한 변경사항을 한 번에 처리 가능
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems){
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for(OrderItem orderItem : orderItems){
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
+
+    //==비즈니스 로직==//
+
+    /*
+     주문 취소
+     */
+    public void cancel(){
+        if(delivery.getStatus() == DeliveryStatus.COMP){
+            throw new IllegalStateException("이미 배송 완료된 상품은 취소가 불가능합니다.");
+        }
+        this.setStatus(OrderStatus.CANCEL);
+        for(OrderItem orderItem : orderItems){
+            orderItem.cancel();
+        }
+    }
+
+    //==조회 로직==//
+
+    /**
+     * 전체 주문 가격 조회
+     */
+    public int getTotalPrice(){
+        // 알트 엔터 누르고 replace sum()으로 바꾸면 됨
+//        int totalPrice = 0;
+//        for(OrderItem orderItem : orderItems){
+//            totalPrice += orderItem.getTotalPrice();
+//        }
+
+//        int totalPrice = orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
+//        return totalPrice;
+
+        return orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
+    }
+
 }
