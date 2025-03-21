@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*; // alt + enter 누르면 가능
 
 public class MemoryMemberRepositoryTest {
-    MemberRepository repository = new MemoryMemberRepository();
+    MemoryMemberRepository repository = new MemoryMemberRepository();
 
     @AfterEach
     public void afterEach(){ // 하나의 테스트가 끝날 때 마다 비워주는 역할
