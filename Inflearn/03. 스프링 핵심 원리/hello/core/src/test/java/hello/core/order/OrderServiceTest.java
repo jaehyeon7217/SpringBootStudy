@@ -12,6 +12,10 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class OrderServiceTest {
     MemberService memberService;
     OrderService orderService;
@@ -32,4 +36,18 @@ public class OrderServiceTest {
         Order order = orderService.createOrder(memberId, "itemA", 10_000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
     }
+
+    @Test
+    void test(){
+        List<Integer> list = new ArrayList<>();
+
+        list.add(1);
+
+        System.out.println(list.get(0));
+        list = new LinkedList<>();
+        list.add(1);
+        System.out.println(list.get(0));
+
+    }
+
 }
