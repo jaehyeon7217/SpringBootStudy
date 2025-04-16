@@ -3,10 +3,8 @@ package hello.core;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
-import hello.core.member.MemberServiceImpl;
-import hello.core.opder.Order;
-import hello.core.opder.OrderService;
-import hello.core.opder.OrderServiceImpl;
+import hello.core.order.Order;
+import hello.core.order.OrderService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
