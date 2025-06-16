@@ -1,3 +1,7 @@
 spring:
   application:
     name: SpringBootCoreGuide
+
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui.html
